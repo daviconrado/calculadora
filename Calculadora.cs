@@ -17,6 +17,12 @@ namespace CalculadoraForms
             try
             {
                 string content = label1.Text;
+
+                if (content.Contains("/") && content.Contains("0"))
+                {
+                    throw new Exception();
+                }
+
                 var result = new DataTable().Compute(content, null);
                 label1.Text = result.ToString();
             }
@@ -28,7 +34,7 @@ namespace CalculadoraForms
 
         private void mostraDisplay(string num)
         {
-            if (label1.Text == "Operação inválida")
+            if (label1.Text == "Operação inválida" || label1.Text == "NaN")
             {
                label1.Text = "";
             }
